@@ -1,2 +1,5 @@
 SpeechRecognition==3.10.3
 PyAudio==0.2.14
+streamlit
+sentence-transformers==2.2.2
+torch==2.2.2
