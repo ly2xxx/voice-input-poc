@@ -1,4 +1,5 @@
 Project inspired by https://realpython.com/python-speech-recognition/
+
 1 - Create a virtual environment :
 ```bash
 python -m venv .venv
