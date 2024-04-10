@@ -1,4 +1,4 @@
-Project inspired by https://realpython.com/python-speech-recognition/
+Project inspired by https://realpython.com/python-speech-recognition/ and https://github.com/B4PT0R/streamlit-mic-recorder 
 
 1 - Create a virtual environment :
 ```bash
