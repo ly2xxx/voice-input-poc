@@ -1,11 +1,32 @@
 import streamlit as st
 from modules.similarity import SimilarityScorer
 import decimal
+import speech_recognition as sr
+
+def listen_and_transcribe():
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        audio = r.listen(source)
+        
+    try:
+        text = r.recognize_google(audio)
+        return text
+    except:
+        return ""
 
 st.title("Text Similarity Calculator")
 
 text1 = st.text_area("Enter first text:", "")
 text2 = st.text_area("Enter second text:", "")
+
+def on_button_press():
+    with sr.Microphone() as source: 
+        r = sr.Recognizer()
+        audio = r.listen(source)
+        text = r.recognize_google(audio)
+        st.session_state.text2 += text
+
+listen_btn = st.button("Listen", on_click=on_button_press) 
 
 scorer = SimilarityScorer() 
     
