@@ -10,6 +10,7 @@ def main():
     # Add a button to start listening
     if st.button("Listen"):
         with sr.Microphone() as source:
+            r.adjust_for_ambient_noise(source)
             st.write("Listening... Speak now!")
             try:
                 # Listen for audio input

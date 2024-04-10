@@ -16,17 +16,34 @@ def listen_and_transcribe():
 
 st.title("Text Similarity Calculator")
 
+if "secondText" not in st.session_state:
+    st.session_state["secondText"] = ""
+
 text1 = st.text_area("Enter first text:", "")
-text2 = st.text_area("Enter second text:", "")
+text2 = st.text_area("Enter second text:", value=st.session_state["secondText"])
 
-def on_button_press():
-    with sr.Microphone() as source: 
-        r = sr.Recognizer()
-        audio = r.listen(source)
-        text = r.recognize_google(audio)
-        st.session_state.text2 += text
+# Initialize the recognizer
+r = sr.Recognizer()
+if st.button("Listen"):
+    with sr.Microphone() as source:
+        r.adjust_for_ambient_noise(source)
+        st.write("Listening... Speak now!")
+        try:
+            # Listen for audio input
+            audio = r.listen(source, timeout=5)
+            st.write("Processing...")
 
-listen_btn = st.button("Listen", on_click=on_button_press) 
+            # Recognize the speech
+            text = r.recognize_google(audio)
+            st.write(f"Recognized text: {text}")
+            st.session_state["secondText"] = text
+        except sr.WaitTimeoutError:
+            st.write("Timeout: No speech detected.")
+        except sr.UnknownValueError:
+            st.write("Error: Unable to recognize speech.")
+        except sr.RequestError as e:
+            st.write(f"Error: {e}")
+
 
 scorer = SimilarityScorer() 
     
