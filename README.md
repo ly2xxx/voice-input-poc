@@ -11,6 +11,7 @@ pip install -r requirments.txt
 ```
 
 3 - Run application
+
 from local - 
 ```bash
 python guessword.py
