@@ -3,4 +3,4 @@ SpeechRecognition==3.10.3
 sentence-transformers==2.2.2
 torch==2.2.2
 streamlit-mic-recorder==0.0.8
-# PyAudio==0.2.14
+PyAudio==0.2.14
