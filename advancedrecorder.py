@@ -1,5 +1,6 @@
 import streamlit as st
 import speech_recognition as sr
+import datetime
 
 def main():
     st.title("Continuous Speech-to-Text")
@@ -22,7 +23,8 @@ def main():
                 audio = r.listen(source, phrase_time_limit=3)  # Reduced listening interval
                 text = r.recognize_google(audio)
                 with container:
-                    st.text_area("Recognized text:", value=text, height=100, key=st.session_state.get('counter', 0))
+                    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+                    st.text_area(f"Recognized text ({current_time}):", value=text, height=100, key=st.session_state.get('counter', 0))
                     st.session_state['counter'] = st.session_state.get('counter', 0) + 1
             except sr.UnknownValueError:
                 with container:
