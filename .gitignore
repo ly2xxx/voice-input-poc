@@ -158,4 +158,5 @@ cython_debug/
 *.pkl
 *.csv
 *.faiss
+*.wav
 
